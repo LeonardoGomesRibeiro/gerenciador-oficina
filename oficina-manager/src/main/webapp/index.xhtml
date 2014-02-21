@@ -11,14 +11,30 @@
 	<ui:define name="body">
 		<h3>Cadastrar Usuario</h3>
 		<h:form id="jsfForm">
-			<p:fieldset legend="Dados do usuario">
-				<h:outputText id="nome" title="Nome" value="Nome:"></h:outputText>
-				<h:inputText value="#{cadastrarClienteManagedBean.nome}"></h:inputText>
-				
-				<h:outputText id="cpf" title="Cpf" value="Cpf:"></h:outputText>
-				<h:inputText value="#{cadastrarClienteManagedBean.cpf}"></h:inputText>
-			</p:fieldset>
-			
+			<p:panel header="Dados do Usuário"> 
+				<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+					<h:outputText title="Nome" value="Nome:"></h:outputText>
+					<p:inputText id="nome" required="true" value="#{cadastrarClienteManagedBean.cliente.nomeCompleto}" />
+					
+					<h:outputText title="Cpf" value="Cpf:"></h:outputText>
+					<p:inputText id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}"></p:inputText>
+					
+					<h:outputText title="Cnpj" value="Cnpj:"></h:outputText>
+					<p:inputText id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}"></p:inputText>
+				</h:panelGrid>
+			</p:panel>
+			<p:panel header="Endereço">
+				<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+					<h:outputText  title="Nome da rua" value="Nome da rua:"></h:outputText>
+					<p:inputText id="nomeRua" value="#{cadastrarClienteManagedBean.cliente.endereco.nomeDaRua}"></p:inputText>
+					
+					<h:outputText  title="Numero" value="Número:"></h:outputText>
+					<p:inputText id="numero" value="#{cadastrarClienteManagedBean.cliente.endereco.numero}"></p:inputText>
+					
+					<h:outputText  title="CEP" value="CEP:"></h:outputText>
+					<p:inputText id="cep" value="#{cadastrarClienteManagedBean.cliente.endereco.cep}"></p:inputText>
+				</h:panelGrid>
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

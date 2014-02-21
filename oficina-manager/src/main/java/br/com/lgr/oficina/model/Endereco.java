@@ -6,24 +6,24 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Endereco {
 
-	@Column(name="name", nullable=false)
-	private String name;
-	@Column(name="number", nullable=false)
-	private String number;
+	@Column(name="nome_rua", nullable=false)
+	private String nomeDaRua;
+	@Column(name="numero", nullable=false)
+	private String numero;
 	@Column(name="cep", nullable=false)
 	private String cep;
 	
-	public String getName() {
-		return name;
+	public String getNomeDaRua() {
+		return nomeDaRua;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNomeDaRua(String nomeDaRua) {
+		this.nomeDaRua = nomeDaRua;
 	}
-	public String getNumber() {
-		return number;
+	public String getNumero() {
+		return numero;
 	}
-	public void setNumber(String number) {
-		this.number = number;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 	public String getCep() {
 		return cep;
@@ -31,8 +31,5 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
-
-	
 }
 	
