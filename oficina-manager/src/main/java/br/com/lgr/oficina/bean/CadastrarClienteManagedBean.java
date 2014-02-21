@@ -1,7 +1,7 @@
 package br.com.lgr.oficina.bean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  * ManagedBean CadastrarClienteManagedBean.
@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
  */
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class CadastrarClienteManagedBean {
 
 	private String nome;

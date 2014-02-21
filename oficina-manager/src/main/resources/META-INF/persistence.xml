@@ -13,12 +13,20 @@
              the source at
              src/main/webapp/WEB-INF/greeter-quickstart-ds.xml -->
         <jta-data-source>java:jboss/datasources/Oficina_Connection</jta-data-source>
-        				 
+
+		<!-- 
+		TODO: Get values from a propeties file.
         <properties>
-            <!-- Properties for Hibernate -->                        
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-        </properties>
+        </properties -->
+        
+        <!-- Configuration for Postgres sql -->
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+        </properties> 
     </persistence-unit>
 </persistence>

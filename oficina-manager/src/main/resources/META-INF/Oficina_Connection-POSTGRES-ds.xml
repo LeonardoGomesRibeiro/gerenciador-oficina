@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+ <datasource jta="true"  jndi-name="java:jboss/datasources/Oficina_Connection" enabled="true" 
+     use-java-context="true" pool-name="Oficina_Connection">
+  <connection-url>jdbc:postgresql://localhost:5432/oficinaDS</connection-url>
+  <driver>postgresql-9.1-903.jdbc4.jar</driver>
+  <pool></pool>
+  <security>
+   <user-name>postgres</user-name>
+   <password>root</password>
+  </security>
+ </datasource>
+</datasources>
