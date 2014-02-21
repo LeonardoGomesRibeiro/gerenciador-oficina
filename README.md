@@ -7,12 +7,18 @@ Sistema de gerenciamento de uma oficina.
  3. JSF 2.0 + Primefaces
  
 # Base de dados
- 1. Instalar MYSQL e criar a base dados com o nome oficinaDS. as tabelas serão geradas no momento em que o servidor de aplicação
- for iniciado.
+ Atualmente o projeto está configurado para rodar em postgres ou mysql.
  
+ Passos para instalar o datasource e o driver do banco de dados no jboss.
+ 1. Iniciar o servidor de aplicação e acessar o Admin Console.(http://localhost:9990/console)
+ 2. Na aba Runtime, ir para seção Deployments  > Manage Deployments
+ 3. Clicar no botão 'Add Content' para adicionar o driver e os arquivos *-ds.xml(Dentro de META-INF)
+ 4. Clicar no botão 'Enable'.
+
 # Em Desenvolvimento
  1. Crud de clientes.(Cadastro, Atualização, Listagem, Deleção)
 
 # Proximas atividades
- 1. Crud de peças.(Cadastro, Atualização, Listagem, Deleção)
- 2. Crud de fornecedores.(Cadastro, Atualização, Listagem, Deleção)
+ 1. Configurar propriedades do datasource no persistence.xml para pegar valores de um arquivo de propriedades.
+ 2. Crud de Peças.(Cadastro, Atualização, Listagem, Deleção)
+ 3. Crud de Fornecedores.(Cadastro, Atualização, Listagem, Deleção)
