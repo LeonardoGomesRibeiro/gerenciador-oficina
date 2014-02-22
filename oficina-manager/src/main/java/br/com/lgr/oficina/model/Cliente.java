@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
 	@Column(name="telefone_celular", nullable=false)
 	private String telefoneCelular;
 	@Column(name="telefone_fixo")
-	private String telefone_fixo;
+	private String telefoneFixo;
 	
 	@Embedded
 	private Endereco endereco;
@@ -95,11 +95,11 @@ public class Cliente implements Serializable {
 	}
 
 	public String getTelefone_fixo() {
-		return telefone_fixo;
+		return telefoneFixo;
 	}
 
-	public void setTelefone_fixo(String telefone_fixo) {
-		this.telefone_fixo = telefone_fixo;
+	public void setTelefone_fixo(String telefoneFixo) {
+		this.telefoneFixo = telefoneFixo;
 	}
 
 	public Endereco getEndereco() {
