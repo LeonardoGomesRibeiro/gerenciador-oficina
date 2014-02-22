@@ -32,14 +32,25 @@
 								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"/>
 							
 							<h:outputText id="cpfOut" title="Cpf" value="Cpf:" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
-							<p:inputText id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></p:inputText>
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>	
+							<p:inputMask 
+								id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}" mask="999.999.999-99" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></p:inputMask>
 							
+							<h:outputText id="estadoCivilOut" title="Estado Civil" value="Estado Civil:" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
+							<p:selectOneMenu 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}" 
+								value="#{cadastrarClienteManagedBean.cliente.estadoCivil.estadoCivil}" >  
+					            <f:selectItem itemLabel="Casado" itemValue="casado" />  
+					            <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
+					        </p:selectOneMenu>
+					        
 							<h:outputText id="cnpjOut" title="Cnpj" value="Cnpj:" 
 								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}" ></h:outputText>
-							<p:inputText id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}"></p:inputText>
+							<p:inputMask id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}" 
+										rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}"
+										mask="99.999.999/9999-99" ></p:inputMask>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

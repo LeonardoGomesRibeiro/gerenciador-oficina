@@ -21,10 +21,10 @@ import br.com.lgr.oficina.enumerations.TipoPessoa;
  * @author Leonardo
  * @email leonardometalhead@gmail.com
  *
- */
+ */	
 @Entity
 @Table(name="Cliente")
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 
 	@Id
 	@Column(name="id")

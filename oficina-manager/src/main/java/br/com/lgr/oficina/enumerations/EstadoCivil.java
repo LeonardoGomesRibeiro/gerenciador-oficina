@@ -12,4 +12,10 @@ public enum EstadoCivil {
 		this.estadoCivil = estadoCivil;
 	}
 	
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 }
