@@ -10,31 +10,54 @@
 	
 	<ui:define name="body">
 		<h3>Cadastrar Usuario</h3>
+		
 		<h:form id="jsfForm">
-			<p:panel header="Dados do Usuário"> 
-				<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
-					<h:outputText title="Nome" value="Nome:"></h:outputText>
-					<p:inputText id="nome" required="true" value="#{cadastrarClienteManagedBean.cliente.nomeCompleto}" />
-					
-					<h:outputText title="Cpf" value="Cpf:"></h:outputText>
-					<p:inputText id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}"></p:inputText>
-					
-					<h:outputText title="Cnpj" value="Cnpj:"></h:outputText>
-					<p:inputText id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}"></p:inputText>
-				</h:panelGrid>
-			</p:panel>
-			<p:panel header="Endereço">
-				<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
-					<h:outputText  title="Nome da rua" value="Nome da rua:"></h:outputText>
-					<p:inputText id="nomeRua" value="#{cadastrarClienteManagedBean.cliente.endereco.nomeDaRua}"></p:inputText>
-					
-					<h:outputText  title="Numero" value="Número:"></h:outputText>
-					<p:inputText id="numero" value="#{cadastrarClienteManagedBean.cliente.endereco.numero}"></p:inputText>
-					
-					<h:outputText  title="CEP" value="CEP:"></h:outputText>
-					<p:inputText id="cep" value="#{cadastrarClienteManagedBean.cliente.endereco.cep}"></p:inputText>
-				</h:panelGrid>
-			</p:panel>
+		
+			<p:growl id="growl" sticky="true" showDetail="true"/>
+			 <p:wizard flowListener="#{cadastrarClienteManagedBean.onFlowProcess}">
+				<p:tab id="pessoal" title="Pessoal">
+					<p:panel id="userpanel" header="Dados do Usuário"> 
+						<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+							<h:outputText value="Tipo de pessoa: " />  
+					        <p:selectOneMenu value="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa}" >  
+					            <f:selectItem itemLabel="Pessoa Física" itemValue="pf" />  
+					            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="pj" />
+					            <p:ajax event="change" process="@this" update="jsfForm"/>
+					        </p:selectOneMenu>  
+					        
+							<h:outputText id="nomeOut" title="Nome" value="Nome:" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
+							<p:inputText id="nome" required="true" 
+								value="#{cadastrarClienteManagedBean.cliente.nomeCompleto}"  
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"/>
+							
+							<h:outputText id="cpfOut" title="Cpf" value="Cpf:" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
+							<p:inputText id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></p:inputText>
+							
+							<h:outputText id="cnpjOut" title="Cnpj" value="Cnpj:" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}" ></h:outputText>
+							<p:inputText id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}" 
+								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}"></p:inputText>
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="endereco" title="Endereço">
+					<p:panel header="Endereço">
+						<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+							<h:outputText  title="Nome da rua" value="Nome da rua:"></h:outputText>
+							<p:inputText id="nomeRua" value="#{cadastrarClienteManagedBean.cliente.endereco.nomeDaRua}"></p:inputText>
+							
+							<h:outputText  title="Numero" value="Número:"></h:outputText>
+							<p:inputText id="numero" value="#{cadastrarClienteManagedBean.cliente.endereco.numero}"></p:inputText>
+							
+							<h:outputText  title="CEP" value="CEP:"></h:outputText>
+							<p:inputText id="cep" value="#{cadastrarClienteManagedBean.cliente.endereco.cep}"></p:inputText>
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+			 </p:wizard> 
 		</h:form>
 	</ui:define>
 </ui:composition>

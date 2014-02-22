@@ -1,5 +1,7 @@
 package br.com.lgr.oficina.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import br.com.lgr.oficina.enumerations.EstadoCivil;
+import br.com.lgr.oficina.enumerations.TipoPessoa;
 
 /**
  * Entidade Cliente
@@ -21,7 +24,7 @@ import br.com.lgr.oficina.enumerations.EstadoCivil;
  */
 @Entity
 @Table(name="Cliente")
-public class Cliente {
+public class Cliente implements Serializable{
 
 	@Id
 	@Column(name="id")
@@ -44,7 +47,11 @@ public class Cliente {
 	
 	@Column(name="estado_civil", nullable=false)
 	@Enumerated(EnumType.STRING)
-	private EstadoCivil estadoCivil; 
+	private EstadoCivil estadoCivil;
+	
+	@Column(name="tipo_pessoa", nullable=false)
+	@Enumerated(EnumType.STRING)
+	private TipoPessoa tipoPessoa;
 
 	
 	public int getId() {
@@ -111,5 +118,11 @@ public class Cliente {
 		this.estadoCivil = estadoCivil;
 	}
 	
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
 	
 }
