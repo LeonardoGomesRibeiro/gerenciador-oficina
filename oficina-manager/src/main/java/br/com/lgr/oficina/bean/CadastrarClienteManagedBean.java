@@ -1,16 +1,14 @@
 package br.com.lgr.oficina.bean;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.view.ViewScoped;
 
 import org.jboss.logging.Logger;
 import org.primefaces.event.FlowEvent;
 
-import br.com.lgr.oficina.enumerations.TipoPessoa;
-import br.com.lgr.oficina.model.Cliente;
+import br.com.lgr.oficina.model.ClientePessoaFisica;
+import br.com.lgr.oficina.model.ClientePessoaJuridica;
 
 /**
  * ManagedBean CadastrarClienteManagedBean.
@@ -24,22 +22,41 @@ import br.com.lgr.oficina.model.Cliente;
 public class CadastrarClienteManagedBean {
 	private static Logger logger = Logger.getLogger(CadastrarClienteManagedBean.class.getName());  
 	 
-	private Cliente cliente;
+	private ClientePessoaFisica clientePF;
+	private ClientePessoaJuridica clientePJ;
 	
-	public CadastrarClienteManagedBean() {
-		cliente = new Cliente();
-		cliente.setTipoPessoa(TipoPessoa.PF);
+	private String tipoDeUsuario;
+	public String getTipoDeUsuario() {
+		return tipoDeUsuario;
+	}
+	public void setTipoDeUsuario(String tipoDeUsuario) {
+		this.tipoDeUsuario = tipoDeUsuario;
 	}
 	
-	public Cliente getCliente() {
-		return cliente;
+	@PostConstruct
+	public void init() {
+		clientePF = new ClientePessoaFisica();
+		
+		clientePJ = new ClientePessoaJuridica();
+		
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	
+	public ClientePessoaFisica getClientePF() {
+		return clientePF;
+	}
+	public void setClientePF(ClientePessoaFisica clientePF) {
+		this.clientePF = clientePF;
+	}
+	public ClientePessoaJuridica getClientePJ() {
+		return clientePJ;
+	}
+	public void setClientePJ(ClientePessoaJuridica clientePJ) {
+		this.clientePJ = clientePJ;
 	}
 	
 	public String onFlowProcess(FlowEvent fe) {
 		logger.info("Going to the next page.");
+		
 		return fe.getNewStep();
 	}
 	

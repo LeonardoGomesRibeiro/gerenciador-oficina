@@ -2,7 +2,6 @@ package br.com.lgr.oficina.enumerations;
 
 public enum EstadoCivil {
 
-	
 	CASADO("casado"),
 	SOLTEIRO("solteiro");
 	
