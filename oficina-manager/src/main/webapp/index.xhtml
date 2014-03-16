@@ -19,52 +19,69 @@
 					<p:panel id="userpanel" header="Dados do Usuário"> 
 						<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
 							<h:outputText value="Tipo de pessoa: " />  
-					        <p:selectOneMenu value="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa}" >  
+					        <p:selectOneMenu value="#{cadastrarClienteManagedBean.tipoDeUsuario}" >  
 					            <f:selectItem itemLabel="Pessoa Física" itemValue="pf" />  
 					            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="pj" />
-					            <p:ajax event="change" process="@this" update="jsfForm"/>
+					            <p:ajax event="change"  listener="#{cadastrarClienteManagedBean.changeComboTipoUsuario()}" process="@this" update="jsfForm"/>
 					        </p:selectOneMenu>  
 					        
 							<h:outputText id="nomeOut" title="Nome" value="Nome:" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}"></h:outputText>
 							<p:inputText id="nome" required="true" 
-								value="#{cadastrarClienteManagedBean.cliente.nomeCompleto}"  
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"/>
+								value="#{cadastrarClienteManagedBean.clientePF.nomeCompleto}"  
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}"
+								requiredMessage="Campo obrigatório."/>
 							
 							<h:outputText id="cpfOut" title="Cpf" value="Cpf:" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>	
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}"></h:outputText>	
 							<p:inputMask 
-								id="cpf" value="#{cadastrarClienteManagedBean.cliente.cpf}" mask="999.999.999-99" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></p:inputMask>
+								id="cpf"
+								value="#{cadastrarClienteManagedBean.clientePF.cpf}" mask="999.999.999-99" 
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}"
+								requiredMessage="Campo obrigatório."></p:inputMask>
 							
 							<h:outputText id="estadoCivilOut" title="Estado Civil" value="Estado Civil:" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}"></h:outputText>
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}"></h:outputText>
 							<p:selectOneMenu 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pf'}" 
-								value="#{cadastrarClienteManagedBean.cliente.estadoCivil.estadoCivil}" >  
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}" 
+								value="#{cadastrarClienteManagedBean.clientePF.estadoCivil.estadoCivil}" >  
 					            <f:selectItem itemLabel="Casado" itemValue="casado" />  
 					            <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
 					        </p:selectOneMenu>
 					        
 							<h:outputText id="cnpjOut" title="Cnpj" value="Cnpj:" 
-								rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}" ></h:outputText>
-							<p:inputMask id="cnpj" value="#{cadastrarClienteManagedBean.cliente.cnpj}" 
-										rendered="#{cadastrarClienteManagedBean.cliente.tipoPessoa.tipoPessoa eq 'pj'}"
-										mask="99.999.999/9999-99" ></p:inputMask>
+								rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pj'}" ></h:outputText>
+							<p:inputMask id="cnpj" value="#{cadastrarClienteManagedBean.clientePJ.cnpj}" 
+										rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pj'}"
+										mask="99.999.999/9999-99"
+										requiredMessage="Campo obrigatório."></p:inputMask>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 				<p:tab id="endereco" title="Endereço">
 					<p:panel header="Endereço">
-						<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+						<h:panelGrid rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}" columns="2" columnClasses="label, value" styleClass="grid">
+							
 							<h:outputText  title="Nome da rua" value="Nome da rua:"></h:outputText>
-							<p:inputText id="nomeRua" value="#{cadastrarClienteManagedBean.cliente.endereco.nomeDaRua}"></p:inputText>
+							<p:inputText id="nomeRua" value="#{cadastrarClienteManagedBean.clientePF.endereco.nomeDaRua}"></p:inputText>
 							
 							<h:outputText  title="Numero" value="Número:"></h:outputText>
-							<p:inputText id="numero" value="#{cadastrarClienteManagedBean.cliente.endereco.numero}"></p:inputText>
+							<p:inputText id="numero" value="#{cadastrarClienteManagedBean.clientePF.endereco.numero}"></p:inputText>
 							
 							<h:outputText  title="CEP" value="CEP:"></h:outputText>
-							<p:inputText id="cep" value="#{cadastrarClienteManagedBean.cliente.endereco.cep}"></p:inputText>
+							<p:inputMask id="cep" value="#{cadastrarClienteManagedBean.clientePF.endereco.cep}" mask="99.999-999" ></p:inputMask>
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="contato" title="Contato">
+					<p:panel header="Contato">
+						<h:panelGrid rendered="#{cadastrarClienteManagedBean.tipoDeUsuario eq 'pf'}" columns="2" columnClasses="label, value" styleClass="grid">
+							<h:outputText value="Telefone Fixo " />
+							<p:inputText id="telefoneFixo" value="#{cadastrarClienteManagedBean.clientePF.contato.telefoneFixo}"></p:inputText>
+							<h:outputText value="Telefone Celular: " />
+							<p:inputText id="telefoneCelular" value="#{cadastrarClienteManagedBean.clientePF.contato.telefoneCelular}"></p:inputText>
+							<h:outputText value="Email: " />
+							<p:inputText id="email" value="#{cadastrarClienteManagedBean.clientePF.contato.email}"></p:inputText>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

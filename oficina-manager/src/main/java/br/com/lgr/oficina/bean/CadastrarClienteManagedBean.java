@@ -36,9 +36,7 @@ public class CadastrarClienteManagedBean {
 	@PostConstruct
 	public void init() {
 		clientePF = new ClientePessoaFisica();
-		
 		clientePJ = new ClientePessoaJuridica();
-		
 	}
 	
 	public ClientePessoaFisica getClientePF() {
@@ -55,10 +53,14 @@ public class CadastrarClienteManagedBean {
 	}
 	
 	public String onFlowProcess(FlowEvent fe) {
-		logger.info("Going to the next page.");
-		
+		logger.info("Going to the next page.");	
+		logger.info("Estado civil1: " + clientePF.getEstadoCivil());
+		logger.info("Estado civil2: " + clientePF.getEstadoCivil().getEstadoCivil());
 		return fe.getNewStep();
 	}
 	
+	public void changeComboTipoUsuario(){
+		System.out.println(this.tipoDeUsuario);
+	}
 }
  
