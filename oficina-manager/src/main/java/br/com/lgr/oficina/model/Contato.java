@@ -1,16 +1,20 @@
 package br.com.lgr.oficina.model;
 
-import javax.persistence.AttributeOverride;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="CONTATO")
-public class Contato extends BaseEntity {
+public class Contato extends BaseEntity implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Column(name="telefone_celular", nullable=false)
 	private String telefoneCelular;
 	@Column(name="telefone_fixo")
